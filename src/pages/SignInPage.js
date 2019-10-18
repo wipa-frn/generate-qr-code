@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import LogoDetail from '../components/sign-in/LogoDetail'
 
 export default class SignInPage extends Component {
   render() {
@@ -9,7 +10,7 @@ export default class SignInPage extends Component {
         <div className="center-sign-in-page">
           <div className="sign-in-canvas">
             <div className="left-sign-in-canvas">
-              1
+              <LogoDetail />
             </div>
             <div className="right-sign-in-canvas">
               2

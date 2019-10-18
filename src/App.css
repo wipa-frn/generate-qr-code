@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Questrial&display=swap');
+
 .App-logo {
   height: 40vmin;
 }
@@ -45,10 +47,23 @@
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   background-image: linear-gradient(to right, bottom, #2CB3C2, #2C539C);
+  color: white;
 }
 
 .right-sign-in-canvas {
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
   background-color: white;
+  color: gray;
+}
+
+.logo {
+  width: 80%;
+  height: auto;
+}
+
+.container-logo-detail {
+  padding: 10%;
+  font-family: 'Questrial', sans-serif;
+  font-size: 1em;
 }
