@@ -67,3 +67,34 @@
   font-family: 'Questrial', sans-serif;
   font-size: 1em;
 }
+
+/* Main page */
+.main-page {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  font-family: 'Questrial', sans-serif;
+  font-size: 1em;
+}
+
+.left-main-page {
+  background-image: linear-gradient(to bottom right, rgb(178, 202, 233), rgb(50, 172, 185));
+  display: grid;
+  grid-template-rows: 1fr 7.5fr;
+}
+
+.right-main-page {
+  display: grid;
+  grid-template-rows: 1fr 7.5fr;
+}
+
+.top-bar-main-page {
+  box-shadow: 5px 5px rgb(112, 112, 112);
+}
+
+.content-main-page {
+  background-color: rgb(238, 238, 238);
+}
+
+.item {
+  color: white;
+}
