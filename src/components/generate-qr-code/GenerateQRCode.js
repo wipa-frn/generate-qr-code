@@ -8,7 +8,7 @@ export default class GenerateQRCode extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showQR: false
+      showQR: true
     }
   }
 
@@ -27,19 +27,22 @@ export default class GenerateQRCode extends Component {
         <div>
           {
             showQR ? (
-              <DivStyle>
-                <QRCode
-                  value={"http://picturesofpeoplescanningqrcodes.tumblr.com/"}
-                  size={200}
-                  bgColor={"#ffffff"}
-                  fgColor={"#000000"}
-                  level={"L"}
-                  includeMargin={false}
-                  renderAs={"svg"}
-                  ref={ref => this.qrcode = ref}
-                  img={{ "src": require("../../assets/logo.png"), "top": 50, "left": 50, "width": 15, "height": 15 }}
-                />
-              </DivStyle>
+              <div>
+                <DivStyle>
+                  <QRCode
+                    value={"http://picturesofpeoplescanningqrcodes.tumblr.com/"}
+                    size={220}
+                    bgColor={"#ffffff"}
+                    fgColor={"#000000"}
+                    level={"L"}
+                    includeMargin={false}
+                    renderAs={"svg"}
+                    ref={ref => this.qrcode = ref}
+                    img={{ "src": require("../../assets/logo.png"), "top": 50, "left": 50, "width": 15, "height": 15 }}
+                  />
+                </DivStyle>
+                <TextStyle>You'll clock in when machine scans your QR Code.</TextStyle>
+              </div>
             ) : null
 
           }
@@ -52,16 +55,26 @@ export default class GenerateQRCode extends Component {
 const ContainerStyle = styled.div`
   display:flex;
   flex-direction: column;
-  padding: 5% 10% 5% 10%;
   align-items: center;
-`
+  justify-content: center;
+  padding: 5% 10% 5% 10%;
+                    `
 const DivStyle = styled.div`
   background-color: white;
-  width: 250px;
-  height: 250px;
+  // width: 110%;
+  // height: 110%;
   margin-top: 10%;
   display:flex;
   flex-direction: column;
   align-items: center;
-  padding-top : 10%
+  // align-self: center
+  padding-top : 15%;
+  padding-bottom : 15%;
+
+`
+
+const TextStyle = styled.p`
+  margin-top : 5%;
+  font-size: 1em;
+  
 `
