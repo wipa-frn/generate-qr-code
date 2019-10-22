@@ -3,18 +3,28 @@ import '../../App.css';
 import { Button } from 'react-bootstrap'
 import styled from 'styled-components';
 import QRCode from 'qrcode.react'
+import { encryptObject, decryptObj } from '../../utils/method'
 
 export default class GenerateQRCode extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showQR: true
+      showQR: true,
+      currentUser: {
+        id: 1234,
+        name: 'Wipawadee Monkut',
+        location: 'Angstrom',
+        created: new Date(),
+
+      }
     }
   }
 
   generateQR = () => {
     this.setState({
-      showQR: !this.state.showQR
+      showQR: !this.state.showQR,
+      created: new Date(),
+
     })
   }
 
