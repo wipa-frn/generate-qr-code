@@ -5,6 +5,11 @@ import styled from 'styled-components';
 import Menu from '../components/main/Menu'
 
 export default class MainPage extends Component {
+  constructor(props) {
+    super(props);
+
+  }
+
   render() {
     return (
       <div className="main-page">
@@ -22,7 +27,7 @@ export default class MainPage extends Component {
             <p><i class="fas fa-sign-out-alt"></i> Logout</p>
           </div>
           <div className="content-main-page">
-
+            {this.props.content}
           </div>
         </div>
       </div>
