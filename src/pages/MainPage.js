@@ -17,7 +17,10 @@ export default class MainPage extends Component {
           </div>
         </div>
         <div className="right-main-page">
-          <div className="top-bar-main-page"></div>
+          <div className="top-bar-main-page">
+            <Image src={require("../assets/profile.jpg")} roundedCircle />
+            <p><i class="fas fa-sign-out-alt"></i> Logout</p>
+          </div>
           <div className="content-main-page">
 
           </div>
