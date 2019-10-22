@@ -89,6 +89,10 @@
 
 .top-bar-main-page {
   box-shadow: 5px 5px rgb(112, 112, 112);
+  color: rgb(151, 151, 151);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .content-main-page {

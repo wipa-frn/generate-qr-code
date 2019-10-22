@@ -3,6 +3,7 @@ import '../App.css';
 import { Image } from 'react-bootstrap'
 import styled from 'styled-components';
 import Menu from '../components/main/Menu'
+import TopBar from '../components/main/TopBar'
 
 export default class MainPage extends Component {
   constructor(props) {
@@ -23,8 +24,7 @@ export default class MainPage extends Component {
         </div>
         <div className="right-main-page">
           <div className="top-bar-main-page">
-            <Image src={require("../assets/profile.jpg")} roundedCircle />
-            <p><i class="fas fa-sign-out-alt"></i> Logout</p>
+            <TopBar />
           </div>
           <div className="content-main-page">
             {this.props.content}
