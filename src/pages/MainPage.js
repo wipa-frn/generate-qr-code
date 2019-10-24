@@ -6,11 +6,6 @@ import Menu from '../components/main/Menu'
 import TopBar from '../components/main/TopBar'
 
 export default class MainPage extends Component {
-  constructor(props) {
-    super(props);
-
-  }
-
   render() {
     return (
       <div className="main-page">

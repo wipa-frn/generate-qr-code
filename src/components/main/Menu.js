@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../../App.css';
 import { Nav } from 'react-bootstrap'
-import styled from 'styled-components';
 
 export default class Menu extends Component {
   render() {

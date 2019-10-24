@@ -8,7 +8,7 @@ export default class SignInPage extends Component {
     return (
       <div className="sign-in-page">
         <div></div>
-        <div className="center-sign-in-page">
+        <div className="d-flex justify-content-center align-items-center">
           <div className="sign-in-canvas">
             <div className="left-sign-in-canvas">
               <LogoDetail />

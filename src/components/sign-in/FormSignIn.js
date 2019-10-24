@@ -6,7 +6,7 @@ import styled from 'styled-components';
 export default class FormSignIn extends Component {
   render() {
     return (
-      <div className="container">
+      <div>
         <TitleSignIn>Sign In</TitleSignIn>
         <Form>
           <Form.Group controlId="formBasicEmail">
