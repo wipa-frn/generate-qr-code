@@ -19,26 +19,79 @@ export default class GenerateQRCode extends Component {
       },
       nowTimeExpire: 10,
       fixTimeExpire: 10,
+      watchID: null
     }
   }
 
   generateQR = () => {
     this.setState({
-      showQR: !this.state.showQR,
+      // showQR: !this.state.showQR,
       created: new Date(),
 
     })
+    //get new location
+    navigator.geolocation.watchPosition(this.getLocation, this.errorHandler)
   }
 
+
+  getLocation = position => {
+    //convert latitude and longitude from 'location iq' api
+    fetch("https://us1.locationiq.com/v1/reverse.php?key=852b1e16101a3b&lat=" + position.coords.latitude + "&lon=" + position.coords.longitude + "&format=json")
+      .then((response) => response.json())
+      .then((responseJson) => {
+
+        this.setState({
+          currentUser: {
+            location: responseJson.display_name
+          }
+        })
+      })
+
+
+  }
+
+  errorHandler = err => {
+    if (err.code === 1) {
+      alert("Error: Access location is denied!");
+    } else if (err.code === 2) {
+      alert("Error: Position is unavailable!");
+    }
+  }
+
+  getLocationUpdate = () => {
+    //get location name
+    let watchID = null;
+    // let options = { timeout: 10000 };
+    if (navigator.geolocation) { //check if geolocation is available
+      watchID = navigator.geolocation.watchPosition(this.getLocation, this.errorHandler)
+
+      this.setState({
+        watchID: watchID
+      })
+    }
+    else {
+      alert('Sorry, browser does not support geolocation!')
+    }
+  }
+
+  componentWillMount() {
+    this.getLocationUpdate()
+
+  }
+
+  componentWillUnmount() {
+    // navigator.geolocation.clearWatch(this.state.watchID);
+
+  }
   render() {
     const { showQR, currentUser, nowTimeExpire, fixTimeExpire } = this.state
 
     return (
       <ContainerStyle>
-        <Button onClick={this.generateQR}>Generate My QR Code</Button>
+
         <div>
           {
-            showQR ? (
+            (currentUser.location !== null) ? (
               <DivStyle>
                 <QRCode
                   value={encryptObject(currentUser)}
@@ -55,19 +108,19 @@ export default class GenerateQRCode extends Component {
                 <TimerExpireDiv>
                   <TimerExpire time={fixTimeExpire} />
                 </TimerExpireDiv>
+
                 <DivButtonRedo>
                   <Button variant="info" onCLick={this.generateQR}><i class="fas fa-redo-alt"></i></Button>
                 </DivButtonRedo>
 
-
-
-
                 <TextStyle>You'll clock in when machine scans your QR Code.</TextStyle>
               </DivStyle>
-            ) : null
+            ) : <Button onClick={this.getLocationUpdate}>Please allow access location.</Button>
           }
         </div>
       </ContainerStyle>
+
+
     )
   }
 }
