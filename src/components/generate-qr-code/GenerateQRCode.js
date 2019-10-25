@@ -10,22 +10,20 @@ export default class GenerateQRCode extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showQR: true,
+      showQR: false,
       currentUser: {
         id: 1234,
         name: 'Wipawadee Monkut',
-        location: 'Angstrom',
+        location: null,
         created: new Date(),
       },
-      nowTimeExpire: 10,
-      fixTimeExpire: 10,
       watchID: null
     }
   }
 
   generateQR = () => {
     this.setState({
-      // showQR: !this.state.showQR,
+      showQR: true,
       created: new Date(),
 
     })
@@ -33,6 +31,9 @@ export default class GenerateQRCode extends Component {
     navigator.geolocation.watchPosition(this.getLocation, this.errorHandler)
   }
 
+  setDisableShowQR = () => {
+    this.setState({ showQR: false })
+  }
 
   getLocation = position => {
     //convert latitude and longitude from 'location iq' api
@@ -46,8 +47,6 @@ export default class GenerateQRCode extends Component {
           }
         })
       })
-
-
   }
 
   errorHandler = err => {
@@ -80,11 +79,11 @@ export default class GenerateQRCode extends Component {
   }
 
   componentWillUnmount() {
-    // navigator.geolocation.clearWatch(this.state.watchID);
+    navigator.geolocation.clearWatch(this.state.watchID);
 
   }
   render() {
-    const { showQR, currentUser, nowTimeExpire, fixTimeExpire } = this.state
+    const { showQR, currentUser } = this.state
 
     return (
       <ContainerStyle>
@@ -93,27 +92,26 @@ export default class GenerateQRCode extends Component {
           {
             (currentUser.location !== null) ? (
               <DivStyle>
-                <QRCode
-                  value={encryptObject(currentUser)}
-                  size={220}
-                  bgColor={"#ffffff"}
-                  fgColor={"#000000"}
-                  level={"L"}
-                  includeMargin={true}
-                  renderAs={"svg"}
-                  ref={ref => this.qrcode = ref}
-                  img={{ "src": require("../../assets/logo.png"), "top": 50, "left": 50, "width": 15, "height": 15 }}
-                />
+                {showQR ?
+                  <QRCode
+                    value={encryptObject(currentUser)}
+                    size={220}
+                    bgColor={"#ffffff"}
+                    fgColor={"#000000"}
+                    level={"L"}
+                    includeMargin={true}
+                    renderAs={"svg"}
+                    ref={ref => this.qrcode = ref}
+                    img={{ "src": require("../../assets/logo.png"), "top": 50, "left": 50, "width": 15, "height": 15 }}
+                  />
+                  : <div class="p-2 bg-warning rounded shadow ">Please generate QR Code</div>
+                }
 
                 <TimerExpireDiv>
-                  <TimerExpire time={fixTimeExpire} />
+                  <TimerExpire generateQR={this.generateQR} fixTimeExpire={120} setDisableShowQR={this.setDisableShowQR} />
                 </TimerExpireDiv>
 
-                <DivButtonRedo>
-                  <Button variant="info" onCLick={this.generateQR}><i class="fas fa-redo-alt"></i></Button>
-                </DivButtonRedo>
-
-                <TextStyle>You'll clock in when machine scans your QR Code.</TextStyle>
+                {showQR ? <TextStyle>You'll clock in when machine scans your QR Code.</TextStyle> : null}
               </DivStyle>
             ) : <Button onClick={this.getLocationUpdate}>Please allow access location.</Button>
           }
@@ -150,9 +148,4 @@ const TimerExpireDiv = styled.div`
   font-size: 0.9em;
   margin: 5%;
   color: #454545;
-`
-
-const DivButtonRedo = styled.div`
-
-  
 `
