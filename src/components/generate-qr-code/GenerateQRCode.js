@@ -24,7 +24,10 @@ export default class GenerateQRCode extends Component {
   generateQR = () => {
     this.setState({
       showQR: true,
-      created: new Date(),
+      currentUser: {
+        ...this.state.currentUser,
+        created: new Date(),
+      }
 
     })
     //get new location
@@ -43,6 +46,7 @@ export default class GenerateQRCode extends Component {
 
         this.setState({
           currentUser: {
+            ...this.state.currentUser,
             location: responseJson.display_name
           }
         })
