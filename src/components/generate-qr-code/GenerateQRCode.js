@@ -16,22 +16,15 @@ export default class GenerateQRCode extends Component {
         name: 'Wipawadee Monkut',
         location: null,
         created: new Date(),
-      },
-      watchID: null
+      }
     }
   }
 
   generateQR = () => {
-    this.setState({
-      showQR: true,
-      currentUser: {
-        ...this.state.currentUser,
-        created: new Date(),
-      }
 
-    })
     //get new location
-    navigator.geolocation.watchPosition(this.getLocation, this.errorHandler)
+    navigator.geolocation.getCurrentPosition(this.getLocation, this.errorHandler)
+    this.setState({ showQR: true })
   }
 
   setDisableShowQR = () => {
@@ -47,7 +40,9 @@ export default class GenerateQRCode extends Component {
         this.setState({
           currentUser: {
             ...this.state.currentUser,
-            location: responseJson.display_name
+            created: new Date(),
+            location: responseJson.display_name,
+
           }
         })
       })
@@ -63,14 +58,9 @@ export default class GenerateQRCode extends Component {
 
   getLocationUpdate = () => {
     //get location name
-    let watchID = null;
-    // let options = { timeout: 10000 };
+    let options = { timeout: 120000 };
     if (navigator.geolocation) { //check if geolocation is available
-      watchID = navigator.geolocation.watchPosition(this.getLocation, this.errorHandler)
-
-      this.setState({
-        watchID: watchID
-      })
+      navigator.geolocation.getCurrentPosition(this.getLocation, this.errorHandler)
     }
     else {
       alert('Sorry, browser does not support geolocation!')
@@ -79,13 +69,8 @@ export default class GenerateQRCode extends Component {
 
   componentWillMount() {
     this.getLocationUpdate()
-
   }
 
-  componentWillUnmount() {
-    navigator.geolocation.clearWatch(this.state.watchID);
-
-  }
   render() {
     const { showQR, currentUser } = this.state
 
