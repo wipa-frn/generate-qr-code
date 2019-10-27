@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Questrial&display=swap');
 
+body {
+  overflow: hidden;
+}
+
 .App-logo {
   height: 40vmin;
 }
@@ -22,17 +26,10 @@
 /* sign in page */
 
 .sign-in-page {
-  width: 100vw;
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
   background-image: linear-gradient(to right bottom, #2CB3C2, #2C539C);
-}
-
-.center-sign-in-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .sign-in-canvas {
@@ -46,8 +43,9 @@
 .left-sign-in-canvas {
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
-  background-image: linear-gradient(to right, bottom, #2CB3C2, #2C539C);
-  color: white;
+  background-image: linear-gradient(to bottom right, rgb(196, 222, 243), rgb(99, 154, 190));
+  color: black;
+  padding: 1.5rem;
 }
 
 .right-sign-in-canvas {
@@ -55,6 +53,7 @@
   border-bottom-right-radius: 30px;
   background-color: white;
   color: gray;
+  padding: 1.5rem;
 }
 
 .logo {
@@ -62,8 +61,39 @@
   height: auto;
 }
 
-.container {
-  padding: 10%;
+/* Main page */
+.main-page {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
   font-family: 'Questrial', sans-serif;
   font-size: 1em;
+}
+
+.left-main-page {
+  background-image: linear-gradient(to bottom right, rgb(178, 202, 233), rgb(50, 172, 185));
+  display: grid;
+  grid-template-rows: 0.7fr 7.5fr;
+}
+
+.right-main-page {
+  display: grid;
+  grid-template-rows: 0.7fr 7.5fr;
+}
+
+.top-bar-main-page {
+  box-shadow: 5px 5px rgb(112, 112, 112);
+  color: rgb(151, 151, 151);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.content-main-page {
+  height: 100vh;
+  background-color: rgb(218, 218, 218);
+  overflow-y: auto;
+}
+
+.item {
+  color: white;
 }

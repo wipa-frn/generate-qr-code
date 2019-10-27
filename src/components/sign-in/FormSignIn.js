@@ -1,36 +1,65 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap'
 import '../../App.css';
-import styled from 'styled-components';
+import styled from 'styled-components'
+import { getEmployeeData } from '../../utils/data'
+import { Redirect } from 'react-router-dom'
 
 export default class FormSignIn extends Component {
+  state = {
+    redirect: false,
+    currentUser: null
+  }
+
+  onSubmit(event) {
+    event.preventDefault();
+
+    const username = this.refs.username.value
+    const password = this.refs.password.value
+
+    // match username and password 
+    const currentUser = getEmployeeData().filter(user => {
+      return user.username === username && user.password === password
+    })
+
+    if (currentUser.length > 0) {
+      this.setState({
+        redirect: true,
+        currentUser: currentUser
+      })
+    } else {
+      alert("Username or Password is not correct.")
+    }
+  }
+
   render() {
+    const { redirect, currentUser } = this.state;
+
+    if (redirect) {
+      return <Redirect to={{
+        pathname: "/generate-qr-code",
+        state: { currentUser: currentUser }
+      }} />;
+    }
+
     return (
       <div className="container">
         <TitleSignIn>Sign In</TitleSignIn>
-        <Form>
-          <Form.Group controlId="formBasicEmail">
+        <Form ref="form" onSubmit={this.onSubmit.bind(this)}>
+          <Form.Group controlId="formBasicUsername">
             <Form.Label><i class="fas fa-user"></i> Username</Form.Label>
-            <Form.Control placeholder="Enter Username" />
-            {/* <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text> */}
+            <Form.Control ref="username" placeholder="Enter Username" required />
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
             <Form.Label><i class="fas fa-lock"></i> Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Control ref="password" type="password" placeholder="Password" required />
           </Form.Group>
-          {/* <Form.Group controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group> */}
           <DivStyle>
-            <Button variant="primary" type="submit">
-              Sign In
-            </Button>
+            <Button variant="primary" type="submit" >Sign In</Button>
           </DivStyle>
-
         </Form>
+
       </div>
     )
   }
