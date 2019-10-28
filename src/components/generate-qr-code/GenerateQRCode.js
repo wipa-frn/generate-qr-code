@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap'
 import styled from 'styled-components';
 import TimerExpire from './TimerExpire'
 import QRCodePic from './QRCodePic'
+import DateTime from './DateTime'
 
 export default class GenerateQRCode extends Component {
   constructor(props) {
@@ -73,9 +74,16 @@ export default class GenerateQRCode extends Component {
     const { showQR, currentUser } = this.state
 
     return (
-      <ContainerStyle>
-
-        <div>
+      <div class="row shadow">
+        <div class="col-lg-6 bg-warning rounded-left">
+          <DivStyle>
+            <DateTime />
+            <div class="px-5 py-2 text-center">
+              <i class="fas fa-map-marker-alt text-danger"></i> {currentUser.location}
+            </div>
+          </DivStyle>
+        </div>
+        <div class="col-lg-6 bg-white rounded-right">
           {
             (currentUser.location !== null) ? (
               <DivStyle>
@@ -93,22 +101,17 @@ export default class GenerateQRCode extends Component {
             ) : <Button onClick={this.getLocationUpdate}>Please allow access location.</Button>
           }
         </div>
-      </ContainerStyle>
+
+      </div>
 
 
     )
   }
 }
 
-const ContainerStyle = styled.div`
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 5% 10% 5% 10%;
-                    `
 const DivStyle = styled.div`
   margin-top: 10%;
+  margin-bottom: 10%;
   display:flex;
   flex-direction: column;
   align-items: center;
