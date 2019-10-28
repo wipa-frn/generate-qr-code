@@ -13,7 +13,7 @@ export default class DateTime extends Component {
         </h1>
         <h6>
           <Clock
-            format={'dddd, MMMM Mo, YYYY'}
+            format={'dddd, MMMM Do, YYYY'}
             ticking={true}
             timezone={'Asia/Bangkok'} />
         </h6>

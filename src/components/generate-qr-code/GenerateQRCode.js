@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import TimerExpire from './TimerExpire'
 import QRCodePic from './QRCodePic'
 import DateTime from './DateTime'
+import QRCodeInfo from './QRCodeInfo'
 
 export default class GenerateQRCode extends Component {
   constructor(props) {
@@ -12,9 +13,10 @@ export default class GenerateQRCode extends Component {
     this.state = {
       showQR: false,
       currentUser: {
-        ...this.props.currentUser,
+        id: this.props.currentUser.id,
+        name: this.props.currentUser.name,
         location: null,
-        created: new Date(),
+        created: null,
       }
     }
   }
@@ -76,12 +78,19 @@ export default class GenerateQRCode extends Component {
     return (
       <div class="row shadow">
         <div class="col-lg-6 bg-warning rounded-left">
+          {/* show current Date Time */}
           <DivStyle>
             <DateTime />
             <div class="px-5 py-2 text-center">
-              <i class="fas fa-map-marker-alt text-danger"></i> {currentUser.location}
+              <p><em><i class="fas fa-map-marker-alt text-danger"></i> {currentUser.location ? currentUser.location : "Not found location"}</em></p>
             </div>
           </DivStyle>
+          {/* show data use to generate-qr-code*/}
+          {showQR ?
+            <DivStyle>
+              <QRCodeInfo currentUser={currentUser} />
+            </DivStyle> : null}
+
         </div>
         <div class="col-lg-6 bg-white rounded-right">
           {
@@ -111,10 +120,9 @@ export default class GenerateQRCode extends Component {
 
 const DivStyle = styled.div`
   margin-top: 10%;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
   display:flex;
   flex-direction: column;
-  align-items: center;
 
 `
 
