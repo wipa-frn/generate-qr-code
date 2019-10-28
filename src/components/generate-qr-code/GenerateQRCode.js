@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import '../../App.css';
 import { Button } from 'react-bootstrap'
 import styled from 'styled-components';
-import QRCode from 'qrcode.react'
-import { encryptObject } from '../../utils/method'
 import TimerExpire from './TimerExpire'
+import QRCodePic from './QRCodePic'
 
 export default class GenerateQRCode extends Component {
   constructor(props) {
@@ -81,17 +80,7 @@ export default class GenerateQRCode extends Component {
             (currentUser.location !== null) ? (
               <DivStyle>
                 {showQR ?
-                  <QRCode
-                    value={encryptObject(currentUser)}
-                    size={220}
-                    bgColor={"#ffffff"}
-                    fgColor={"#000000"}
-                    level={"L"}
-                    includeMargin={true}
-                    renderAs={"svg"}
-                    ref={ref => this.qrcode = ref}
-                    img={{ "src": require("../../assets/logo.png"), "top": 50, "left": 50, "width": 15, "height": 15 }}
-                  />
+                  <QRCodePic currentUser={currentUser} />
                   : <div class="p-2 bg-warning rounded shadow ">Please generate QR Code</div>
                 }
 
