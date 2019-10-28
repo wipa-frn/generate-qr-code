@@ -19,7 +19,7 @@ export default class MainPage extends Component {
         </div>
         <div className="right-main-page">
           <div className="top-bar-main-page">
-            <TopBar />
+            <TopBar currentUser={this.props.currentUser} />
           </div>
           <div className="content-main-page">
             {this.props.content}

@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import '../../App.css';
 import { Button } from 'react-bootstrap'
 import styled from 'styled-components';
-import QRCode from 'qrcode.react'
-import { encryptObject } from '../../utils/method'
 import TimerExpire from './TimerExpire'
+import QRCodePic from './QRCodePic'
+import DateTime from './DateTime'
+import QRCodeInfo from './QRCodeInfo'
 
 export default class GenerateQRCode extends Component {
   constructor(props) {
@@ -12,23 +13,27 @@ export default class GenerateQRCode extends Component {
     this.state = {
       showQR: false,
       currentUser: {
-        id: 1234,
-        name: 'Wipawadee Monkut',
+        id: this.props.currentUser.id,
+        name: this.props.currentUser.name,
         location: null,
-        created: new Date(),
+        created: null,
       }
     }
   }
 
   generateQR = () => {
-
     //get new location
     navigator.geolocation.getCurrentPosition(this.getLocation, this.errorHandler)
-    this.setState({ showQR: true })
   }
 
   setDisableShowQR = () => {
-    this.setState({ showQR: false })
+    this.setState({
+      showQR: false,
+      currentUser: {
+        ...this.state.currentUser,
+        created: null,
+      }
+    })
   }
 
   getLocation = position => {
@@ -37,14 +42,20 @@ export default class GenerateQRCode extends Component {
       .then((response) => response.json())
       .then((responseJson) => {
 
+        let showQR = true
+        if (this.state.currentUser.location === null) {
+          showQR = false
+        }
+
         this.setState({
           currentUser: {
             ...this.state.currentUser,
             created: new Date(),
             location: responseJson.display_name,
-
-          }
+          },
+          showQR: showQR
         })
+
       })
   }
 
@@ -75,55 +86,64 @@ export default class GenerateQRCode extends Component {
     const { showQR, currentUser } = this.state
 
     return (
-      <ContainerStyle>
+      <div class="row shadow">
+        <div class="col-lg-6 bg-warning rounded-left">
+          {/* show current Date Time */}
+          <DivStyle>
+            <DateTime />
+            <div class="px-5 py-2 text-center">
+              <p><em><i class="fas fa-map-marker-alt text-danger"></i> {currentUser.location ? currentUser.location : "Not found location"}</em></p>
+            </div>
+          </DivStyle>
+          {/* show data use to generate-qr-code*/}
+          {showQR ?
+            <DivStyle>
+              <QRCodeInfo currentUser={currentUser} />
+            </DivStyle> : null}
 
-        <div>
+        </div>
+        <div class="col-lg-6 bg-white rounded-right">
           {
+            // show qr code
             (currentUser.location !== null) ? (
               <DivStyle>
-                {showQR ?
-                  <QRCode
-                    value={encryptObject(currentUser)}
-                    size={220}
-                    bgColor={"#ffffff"}
-                    fgColor={"#000000"}
-                    level={"L"}
-                    includeMargin={true}
-                    renderAs={"svg"}
-                    ref={ref => this.qrcode = ref}
-                    img={{ "src": require("../../assets/logo.png"), "top": 50, "left": 50, "width": 15, "height": 15 }}
-                  />
-                  : <div class="p-2 bg-warning rounded shadow ">Please generate QR Code</div>
-                }
+                <div class="d-flex flex-column align-items-center">
+                  {showQR ?
+                    <div>
+                      <h4 class="text-primary" align="center"><strong>Your QR Code</strong></h4>
+                      <QRCodePic currentUser={currentUser} />
+                    </div>
+                    :
+                    <DivStyle>
+                      <div class="d-flex flex-column align-items-center">
+                        <div class=" p-2 bg-warning rounded shadow ">Please generate QR Code</div>
+                      </div>
+                    </DivStyle>
+                  }
 
-                <TimerExpireDiv>
-                  <TimerExpire generateQR={this.generateQR} fixTimeExpire={120} setDisableShowQR={this.setDisableShowQR} />
-                </TimerExpireDiv>
+                  <TimerExpireDiv>
+                    <TimerExpire generateQR={this.generateQR} fixTimeExpire={120} setDisableShowQR={this.setDisableShowQR} />
+                  </TimerExpireDiv>
 
-                {showQR ? <TextStyle>You'll clock in when machine scans your QR Code.</TextStyle> : null}
+                  {showQR ? <TextStyle>You'll clock in when machine scans your QR Code.</TextStyle> : null}
+                </div>
               </DivStyle>
-            ) : <Button onClick={this.getLocationUpdate}>Please allow access location.</Button>
+            ) : <DivStyle><div class="d-flex flex-column align-items-center"><Button onClick={this.getLocationUpdate}>Please allow access location.</Button></div></DivStyle>
           }
         </div>
-      </ContainerStyle>
+
+      </div>
 
 
     )
   }
 }
 
-const ContainerStyle = styled.div`
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 5% 10% 5% 10%;
-                    `
 const DivStyle = styled.div`
   margin-top: 10%;
+  margin-bottom: 5%;
   display:flex;
   flex-direction: column;
-  align-items: center;
 
 `
 
@@ -134,7 +154,7 @@ const TextStyle = styled.p`
 `
 
 const TimerExpireDiv = styled.div`
-  font-size: 0.9em;
-  margin: 5%;
-  color: #454545;
-`
+    font-size: 0.9em;
+    margin: 5%;
+    color: #454545;
+  `

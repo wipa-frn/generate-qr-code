@@ -6,20 +6,22 @@ import MainPage from './pages/MainPage'
 import GenerateQRCodePage from './pages/GenerateQRCodePage'
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Link,
-  useParams
-} from "react-router-dom";
+  Redirect,
+  Switch
+} from 'react-router-dom';
+import history from './utils/history'
 
 function App() {
   return (
-    <Router>
+
+    <Router history={history} forceRefresh={true}>
       <div className="App">
         <Switch>
-          <Route exact path="/" ><SignInPage /></Route>
-          <Route path="/sign-in" ><SignInPage /></Route>
-          <Route path="/generate-qr-code" ><GenerateQRCodePage /></Route>
+          {/* <Redirect to="/generate-qr-code" /> */}
+          <Route exact path="/" component={SignInPage} />
+          <Route path="/sign-in" component={SignInPage} />
+          <Route path="/generate-qr-code" component={GenerateQRCodePage} />
         </Switch>
       </div>
     </Router>
