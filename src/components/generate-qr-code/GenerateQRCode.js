@@ -27,7 +27,13 @@ export default class GenerateQRCode extends Component {
   }
 
   setDisableShowQR = () => {
-    this.setState({ showQR: false })
+    this.setState({
+      showQR: false,
+      currentUser: {
+        ...this.state.currentUser,
+        created: null,
+      }
+    })
   }
 
   getLocation = position => {
