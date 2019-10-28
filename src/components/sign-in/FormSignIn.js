@@ -25,7 +25,7 @@ export default class FormSignIn extends Component {
     if (currentUser.length > 0) {
       this.setState({
         redirect: true,
-        currentUser: currentUser
+        currentUser: currentUser[0]
       })
     } else {
       alert("Username or Password is not correct.")

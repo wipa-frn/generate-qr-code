@@ -12,8 +12,7 @@ export default class GenerateQRCode extends Component {
     this.state = {
       showQR: false,
       currentUser: {
-        id: 1234,
-        name: 'Wipawadee Monkut',
+        ...this.props.currentUser,
         location: null,
         created: new Date(),
       }

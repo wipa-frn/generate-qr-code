@@ -6,6 +6,7 @@ export function getEmployeeData() {
       username: "wipawadee",
       password: "1234",
       name: "Wipawadee Monkut",
+      role: "Developer",
       avatar: require("../assets/taeyong.jpg")
     },
     {
@@ -13,6 +14,7 @@ export function getEmployeeData() {
       username: "chittaphon",
       password: "1235",
       name: "Chittaphon Leechaiyapornkul",
+      role: "Project Manager",
       avatar: require("../assets/ten.jpg")
 
     },
