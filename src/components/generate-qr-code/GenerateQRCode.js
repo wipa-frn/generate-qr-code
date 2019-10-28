@@ -96,18 +96,28 @@ export default class GenerateQRCode extends Component {
           {
             (currentUser.location !== null) ? (
               <DivStyle>
-                {showQR ?
-                  <QRCodePic currentUser={currentUser} />
-                  : <div class="p-2 bg-warning rounded shadow ">Please generate QR Code</div>
-                }
+                <div class="d-flex flex-column align-items-center">
+                  {showQR ?
+                    <div>
+                      <h4 class="text-primary" align="center"><strong>Your QR Code</strong></h4>
+                      <QRCodePic currentUser={currentUser} />
+                    </div>
+                    :
+                    <DivStyle>
+                      <div class="d-flex flex-column align-items-center">
+                        <div class=" p-2 bg-warning rounded shadow ">Please generate QR Code</div>
+                      </div>
+                    </DivStyle>
+                  }
 
-                <TimerExpireDiv>
-                  <TimerExpire generateQR={this.generateQR} fixTimeExpire={120} setDisableShowQR={this.setDisableShowQR} />
-                </TimerExpireDiv>
+                  <TimerExpireDiv>
+                    <TimerExpire generateQR={this.generateQR} fixTimeExpire={120} setDisableShowQR={this.setDisableShowQR} />
+                  </TimerExpireDiv>
 
-                {showQR ? <TextStyle>You'll clock in when machine scans your QR Code.</TextStyle> : null}
+                  {showQR ? <TextStyle>You'll clock in when machine scans your QR Code.</TextStyle> : null}
+                </div>
               </DivStyle>
-            ) : <Button onClick={this.getLocationUpdate}>Please allow access location.</Button>
+            ) : <DivStyle><div class="d-flex flex-column align-items-center"><Button onClick={this.getLocationUpdate}>Please allow access location.</Button></div></DivStyle>
           }
         </div>
 
@@ -119,21 +129,21 @@ export default class GenerateQRCode extends Component {
 }
 
 const DivStyle = styled.div`
-  margin-top: 10%;
-  margin-bottom: 5%;
-  display:flex;
-  flex-direction: column;
-
-`
+            margin-top: 10%;
+            margin-bottom: 5%;
+            display:flex;
+            flex-direction: column;
+          
+          `
 
 const TextStyle = styled.p`
-  margin-top : 5%;
-  font-size: 1em;
-  
-`
+            margin-top : 5%;
+            font-size: 1em;
+            
+          `
 
 const TimerExpireDiv = styled.div`
-  font-size: 0.9em;
-  margin: 5%;
-  color: #454545;
-`
+            font-size: 0.9em;
+            margin: 5%;
+            color: #454545;
+          `
