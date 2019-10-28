@@ -22,10 +22,8 @@ export default class GenerateQRCode extends Component {
   }
 
   generateQR = () => {
-
     //get new location
     navigator.geolocation.getCurrentPosition(this.getLocation, this.errorHandler)
-    this.setState({ showQR: true })
   }
 
   setDisableShowQR = () => {
@@ -38,14 +36,20 @@ export default class GenerateQRCode extends Component {
       .then((response) => response.json())
       .then((responseJson) => {
 
+        let showQR = true
+        if (this.state.currentUser.location === null) {
+          showQR = false
+        }
+
         this.setState({
           currentUser: {
             ...this.state.currentUser,
             created: new Date(),
             location: responseJson.display_name,
-
-          }
+          },
+          showQR: showQR
         })
+
       })
   }
 
@@ -94,6 +98,7 @@ export default class GenerateQRCode extends Component {
         </div>
         <div class="col-lg-6 bg-white rounded-right">
           {
+            // show qr code
             (currentUser.location !== null) ? (
               <DivStyle>
                 <div class="d-flex flex-column align-items-center">

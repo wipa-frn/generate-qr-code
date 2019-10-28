@@ -53,10 +53,13 @@ export default class Time extends Component {
   }
 
   handleCountdown(seconds) {
-    this.setState({
-      count: seconds,
-      running: true
-    })
+    setTimeout(() => {
+      this.setState({
+        count: seconds,
+        running: true
+      })
+    }, 500);
+
   }
 
   handleStop() {
