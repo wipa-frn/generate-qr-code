@@ -129,21 +129,21 @@ export default class GenerateQRCode extends Component {
 }
 
 const DivStyle = styled.div`
-            margin-top: 10%;
-            margin-bottom: 5%;
-            display:flex;
-            flex-direction: column;
-          
-          `
+  margin-top: 10%;
+  margin-bottom: 5%;
+  display:flex;
+  flex-direction: column;
+
+`
 
 const TextStyle = styled.p`
-            margin-top : 5%;
-            font-size: 1em;
-            
-          `
+  margin-top : 5%;
+  font-size: 1em;
+  
+`
 
 const TimerExpireDiv = styled.div`
-            font-size: 0.9em;
-            margin: 5%;
-            color: #454545;
-          `
+    font-size: 0.9em;
+    margin: 5%;
+    color: #454545;
+  `
