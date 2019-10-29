@@ -7,7 +7,7 @@ export default class Menu extends Component {
     return (
       <div>
         <Nav defaultActiveKey="/generate-qr-code" className="flex-column">
-          <Nav.Link className="item" href="/home">Home</Nav.Link>
+          {/* <Nav.Link className="item" href="/home">Home</Nav.Link> */}
           <Nav.Link className="item" eventKey="generate-qr-code" href="/generate-qr-code">Generate QR Code</Nav.Link>
         </Nav>
       </div>

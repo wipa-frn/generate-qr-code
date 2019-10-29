@@ -17,7 +17,9 @@ export default class GenerateQRCode extends Component {
         name: this.props.currentUser.name,
         location: null,
         created: null,
-      }
+        expired: null
+      },
+      fixTimeExpire: 120, //seconds
     }
   }
 
@@ -32,6 +34,7 @@ export default class GenerateQRCode extends Component {
       currentUser: {
         ...this.state.currentUser,
         created: null,
+        expired: null
       }
     })
   }
@@ -47,15 +50,18 @@ export default class GenerateQRCode extends Component {
           showQR = false
         }
 
+        const currentDate = new Date()
+        let expiredTime = new Date(currentDate.getTime() + 1000 * this.state.fixTimeExpire);
+
         this.setState({
           currentUser: {
             ...this.state.currentUser,
-            created: new Date(),
             location: responseJson.display_name,
+            created: currentDate,
+            expired: expiredTime
           },
           showQR: showQR
         })
-
       })
   }
 
@@ -63,7 +69,7 @@ export default class GenerateQRCode extends Component {
     if (err.code === 1) {
       alert("Error: Access location is denied!");
     } else if (err.code === 2) {
-      alert("Error: Position is unavailable!");
+      alert("Error: Please open internet connection!");
     }
   }
 
@@ -83,7 +89,7 @@ export default class GenerateQRCode extends Component {
   }
 
   render() {
-    const { showQR, currentUser } = this.state
+    const { showQR, currentUser, fixTimeExpire } = this.state
 
     return (
       <div class="row shadow">
@@ -122,7 +128,7 @@ export default class GenerateQRCode extends Component {
                   }
 
                   <TimerExpireDiv>
-                    <TimerExpire generateQR={this.generateQR} fixTimeExpire={120} setDisableShowQR={this.setDisableShowQR} />
+                    <TimerExpire generateQR={this.generateQR} fixTimeExpire={fixTimeExpire} setDisableShowQR={this.setDisableShowQR} />
                   </TimerExpireDiv>
 
                   {showQR ? <TextStyle>You'll clock in when machine scans your QR Code.</TextStyle> : null}
