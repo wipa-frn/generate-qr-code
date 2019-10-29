@@ -2,10 +2,25 @@ import React, { Component } from 'react';
 import '../../App.css';
 import { Image, Button } from 'react-bootstrap'
 import styled from 'styled-components';
+import { Redirect } from 'react-router-dom'
 
 export default class TopBar extends Component {
+  state = {
+    redirect: false,
+  }
+
+  onClickSignOut = () => { }
   render() {
     const { currentUser } = this.props
+    const { redirect } = this.state
+
+    if (redirect) {
+      return <Redirect to={{
+        pathname: "/",
+        state: { currentUser: null }
+      }} />;
+    }
+
     return (
       <DivStyle>
         <ImageStyle src={currentUser.avatar} roundedCircle />
@@ -13,7 +28,7 @@ export default class TopBar extends Component {
           <NameStyle>{currentUser.name}</NameStyle>
           <RoleStyle>{currentUser.role}</RoleStyle>
         </div>
-        <Button variant="light"><i class="fas fa-sign-out-alt"></i></Button>
+        <Button variant="light" onClick={() => this.setState({ redirect: true })}><i class="fas fa-sign-out-alt"></i></Button>
       </DivStyle>
     )
   }
