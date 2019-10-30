@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap'
+import { Offline, Online } from "react-detect-offline";
 
 class Clock extends Component {
   format(time) {

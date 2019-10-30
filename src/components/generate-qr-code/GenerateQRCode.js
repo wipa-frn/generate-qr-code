@@ -6,6 +6,7 @@ import TimerExpire from './TimerExpire'
 import QRCodePic from './QRCodePic'
 import DateTime from './DateTime'
 import QRCodeInfo from './QRCodeInfo'
+import { Offline, Online } from "react-detect-offline";
 
 export default class GenerateQRCode extends Component {
   constructor(props) {
@@ -71,6 +72,13 @@ export default class GenerateQRCode extends Component {
     } else if (err.code === 2) {
       alert("Error: Please open internet connection!");
     }
+
+    this.setState({
+      currentUser: {
+        ...this.state.currentUser,
+        location: null
+      },
+    })
   }
 
   getLocationUpdate = () => {
