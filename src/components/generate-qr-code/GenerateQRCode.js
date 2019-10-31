@@ -7,6 +7,8 @@ import QRCodePic from './QRCodePic'
 import DateTime from './DateTime'
 import QRCodeInfo from './QRCodeInfo'
 import { Offline, Online } from "react-detect-offline";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 
 export default class GenerateQRCode extends Component {
   constructor(props) {
@@ -106,7 +108,7 @@ export default class GenerateQRCode extends Component {
           <DivStyle>
             <DateTime />
             <div class="px-5 py-2 text-center">
-              <p><em><i class="fas fa-map-marker-alt text-danger"></i> {currentUser.location ? currentUser.location : "Not found location"}</em></p>
+              <p><em><FontAwesomeIcon icon={faMapMarkerAlt} className="text-danger" /> {currentUser.location ? currentUser.location : "Not found location"}</em></p>
             </div>
           </DivStyle>
           {/* show data use to generate-qr-code*/}

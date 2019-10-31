@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Redirect } from 'react-router-dom'
 import { Detector } from "react-detect-offline";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
 export default class TopBar extends Component {
   state = {
@@ -39,7 +39,7 @@ export default class TopBar extends Component {
           <NameStyle>{currentUser.name}</NameStyle>
           <RoleStyle>{currentUser.role}</RoleStyle>
         </div>
-        <Button variant="light" onClick={() => this.setState({ redirect: true })}><i class="fas fa-sign-out-alt"></i></Button>
+        <Button variant="light" onClick={() => this.setState({ redirect: true })}><FontAwesomeIcon icon={faSignOutAlt} /></Button>
       </DivStyle>
     )
   }

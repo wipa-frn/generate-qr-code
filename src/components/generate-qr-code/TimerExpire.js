@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap'
-import { Offline, Online } from "react-detect-offline";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRedoAlt } from '@fortawesome/free-solid-svg-icons'
 
 class Clock extends Component {
   format(time) {
@@ -78,7 +79,7 @@ export default class Time extends Component {
       <div class="d-flex flex-column align-items-center">
         {count >= 0 ? <Clock time={count} /> : null}
         <br></br>
-        <Button className="shadow" variant="info" size="sm" onClick={() => { this.handleCountdown(fixTimeExpire); this.props.generateQR() }}><i class="fas fa-redo-alt"></i></Button>
+        <Button className="shadow" variant="info" size="sm" onClick={() => { this.handleCountdown(fixTimeExpire); this.props.generateQR() }}><FontAwesomeIcon icon={faRedoAlt} /></Button>
       </div>
     )
   }

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faIdCard, faUser, faMapMarkerAlt, faCalendarDay, faClock } from '@fortawesome/free-solid-svg-icons'
 
 export default class QRCodeInfo extends Component {
 
@@ -12,11 +14,11 @@ export default class QRCodeInfo extends Component {
     return (
       <div class="shadow rounded bg-light p-2">
         <h6 align="center" class="p-2"><strong>QR Code information</strong></h6>
-        <div><i class="fas fa-id-card text-success"></i> {currentUser.id}</div>
-        <div><i class="fas fa-user text-secondary"></i> {currentUser.name}</div>
-        <div><i class="fas fa-map-marker-alt text-danger"></i> {currentUser.location}</div>
-        <div><i class="fas fa-calendar-day text-primary"></i> {date}</div>
-        <div><i class="fas fa-clock text-info"></i> {time}</div>
+        <div><FontAwesomeIcon icon={faIdCard} className="text-success" /> {currentUser.id}</div>
+        <div><FontAwesomeIcon icon={faUser} className="text-secondary" /> {currentUser.name}</div>
+        <div><FontAwesomeIcon icon={faMapMarkerAlt} className="text-danger" /> {currentUser.location}</div>
+        <div><FontAwesomeIcon icon={faCalendarDay} className="text-primary" /> {date}</div>
+        <div><FontAwesomeIcon icon={faClock} className="text-info" /> {time}</div>
       </div>
     )
   }
