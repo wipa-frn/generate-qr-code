@@ -3,7 +3,9 @@ import '../../App.css';
 import { Image, Button } from 'react-bootstrap'
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom'
-import { Offline, Online } from "react-detect-offline";
+import { Detector } from "react-detect-offline";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircle } from '@fortawesome/free-solid-svg-icons'
 
 export default class TopBar extends Component {
   state = {
@@ -24,8 +26,14 @@ export default class TopBar extends Component {
 
     return (
       <DivStyle>
-        <Online><i class="fas fa-circle text-success fa-xs mr-2 mb-4"></i></Online>
-        <Offline><i class="fas fa-circle text-secondary fa-xs mr-2 mb-4"></i></Offline>
+        {/* show status online */}
+        <Detector
+          render={({ online }) => (
+            <div class={online ? "text-success mr-2 mb-4" : "text-secondary mr-2 mb-4"}>
+              <FontAwesomeIcon icon={faCircle} size="xs" />
+            </div>
+          )}
+        />
         <ImageStyle src={currentUser.avatar} roundedCircle />
         <div class="d-flex flex-column justify-content-center mr-2">
           <NameStyle>{currentUser.name}</NameStyle>
