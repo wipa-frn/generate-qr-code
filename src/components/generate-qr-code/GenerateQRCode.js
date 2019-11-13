@@ -23,6 +23,7 @@ export default class GenerateQRCode extends Component {
         expired: null
       },
       fixTimeExpire: 120, //seconds
+      isLocationBlocked: null
     }
   }
 
@@ -69,7 +70,9 @@ export default class GenerateQRCode extends Component {
   }
 
   errorHandler = err => {
+    let isLocationBlocked = false;
     if (err.code === 1) {
+      isLocationBlocked = true
       alert("Error: Access location is denied!");
     } else if (err.code === 2) {
       alert("Error: Please open internet connection!");
@@ -80,6 +83,7 @@ export default class GenerateQRCode extends Component {
         ...this.state.currentUser,
         location: null
       },
+      isLocationBlocked: isLocationBlocked
     })
   }
 
@@ -92,6 +96,34 @@ export default class GenerateQRCode extends Component {
     else {
       alert('Sorry, browser does not support geolocation!')
     }
+
+  }
+
+  location = position => {
+    //convert latitude and longitude from 'location iq' api
+    fetch("https://us1.locationiq.com/v1/reverse.php?key=852b1e16101a3b&lat="
+      + position.coords.latitude + "&lon=" + position.coords.longitude + "&format=json")
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({
+          currentUser: {
+            ...this.state.currentUser,
+            location: responseJson.display_name,
+          },
+          showQR: false
+        })
+      })
+  }
+
+  reloadLocation = () => {
+    if (navigator.geolocation) { //check if geolocation is available
+      navigator.geolocation.getCurrentPosition(this.location, this.errorHandler)
+      console.log("click")
+    }
+    else {
+      alert('Sorry, browser does not support geolocation!')
+    }
+
   }
 
   componentWillMount() {
@@ -99,8 +131,8 @@ export default class GenerateQRCode extends Component {
   }
 
   render() {
-    const { showQR, currentUser, fixTimeExpire } = this.state
-
+    const { showQR, currentUser, fixTimeExpire, isLocationBlocked } = this.state
+    console.log(currentUser)
     return (
       <div class="row shadow">
         <div class="col-lg-6 bg-warning rounded-left">
@@ -112,7 +144,7 @@ export default class GenerateQRCode extends Component {
             </div>
           </DivStyle>
           {/* show data use to generate-qr-code*/}
-          {showQR ?
+          {showQR && currentUser.location !== null ?
             <DivStyle>
               <QRCodeInfo currentUser={currentUser} />
             </DivStyle> : null}
@@ -144,11 +176,17 @@ export default class GenerateQRCode extends Component {
                   {showQR ? <TextStyle>You'll clock in when machine scans your QR Code.</TextStyle> : null}
                 </div>
               </DivStyle>
-            ) : <DivStyle><div class="d-flex flex-column align-items-center"><Button onClick={this.getLocationUpdate}>Please allow access location.</Button></div></DivStyle>
+            ) :
+              <DivStyle>
+                <div class="d-flex flex-column align-items-center">
+                  <Online><Button onClick={this.reloadLocation}>{isLocationBlocked || isLocationBlocked === null ? "Please allow access location." : "Please reload this page."}</Button></Online>
+                  <Offline><Button onClick={this.reloadLocation}>Please open internet connection.</Button></Offline>
+                </div>
+              </DivStyle>
           }
         </div>
 
-      </div>
+      </div >
 
 
     )

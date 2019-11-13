@@ -14,6 +14,7 @@ export default class FormSignIn extends Component {
   onSubmit(event) {
     event.preventDefault();
 
+    //get value from form.
     const username = this.refs.username.value
     const password = this.refs.password.value
 
@@ -22,19 +23,23 @@ export default class FormSignIn extends Component {
       return user.username === username && user.password === password
     })
 
+    //If user is match ,page redirect to generate-qr-code
     if (currentUser.length > 0) {
       this.setState({
         redirect: true,
         currentUser: currentUser[0]
       })
-    } else {
+    }
+    else {
       alert("Username or Password is not correct.")
     }
+
   }
 
   render() {
     const { redirect, currentUser } = this.state;
 
+    //redirect to generate-qr-code
     if (redirect) {
       return <Redirect to={{
         pathname: "/generate-qr-code",
@@ -59,7 +64,6 @@ export default class FormSignIn extends Component {
             <Button variant="primary" type="submit" >Sign In</Button>
           </DivStyle>
         </Form>
-
       </div>
     )
   }
