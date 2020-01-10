@@ -15,6 +15,7 @@
     "react-detect-offline": "^2.4.0",
     "react-dom": "^16.10.2",
     "react-live-clock": "^3.1.0",
+    "react-responsive-sidebar": "^0.1.16",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.2.0",
     "styled-components": "^4.4.0"

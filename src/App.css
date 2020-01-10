@@ -64,8 +64,8 @@ body {
 
 /* Main page */
 .main-page {
-  display: grid;
-  grid-template-columns: 1fr 5fr;
+  /* display: grid; */
+  /* grid-template-columns: 1fr 5fr; */
   font-family: 'Questrial', sans-serif;
   font-size: 1em;
 }
