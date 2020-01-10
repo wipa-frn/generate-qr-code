@@ -7,12 +7,12 @@ export default class DateTime extends Component {
   render() {
     return (
       <div class="d-flex flex-column justify-content-center align-items-center">
-        <h1>
+        <h2>
           <FontAwesomeIcon icon={faClock} /> <Clock
             format={'hh : mm : ss A'}
             ticking={true}
             timezone={'Asia/Bangkok'} />
-        </h1>
+        </h2>
         <h6>
           <Clock
             format={'dddd, MMMM Do, YYYY'}
