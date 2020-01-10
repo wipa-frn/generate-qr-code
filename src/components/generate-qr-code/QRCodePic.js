@@ -14,7 +14,7 @@ export default class QRCodePic extends Component {
         includeMargin={true}
         renderAs={"svg"}
         ref={ref => this.qrcode = ref}
-        img={{ "src": require("../../assets/logo.png"), "top": 50, "left": 50, "width": 15, "height": 15 }}
+        imageSettings={{ src: require("../../assets/logo.png") }}
       />
     )
   }
