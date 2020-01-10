@@ -3,6 +3,8 @@
 
 body {
   overflow: hidden;
+  font-family: 'Questrial', sans-serif;
+  font-size: 1em;
 }
 
 .App-logo {
@@ -66,8 +68,9 @@ body {
 .main-page {
   /* display: grid; */
   /* grid-template-columns: 1fr 5fr; */
-  font-family: 'Questrial', sans-serif;
-  font-size: 1em;
+  /* font-family: 'Questrial', sans-serif;
+  font-size: 1em; */
+
 }
 
 .left-main-page {
@@ -77,25 +80,38 @@ body {
 }
 
 .right-main-page {
-  display: grid;
-  grid-template-rows: 0.7fr 7.5fr;
+  /* display: grid;
+  grid-template-rows: 0.7fr 7.5fr; */
+  /* overflow: hidden; */
 }
 
 .top-bar-main-page {
-  box-shadow: 5px 5px rgb(112, 112, 112);
   color: rgb(151, 151, 151);
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: white;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1;
+
 }
 
 .content-main-page {
   height: 100vh;
   background-color: rgb(218, 218, 218);
-  overflow-y: auto;
   padding: 5% 10% 5% 10%;
+  margin-top: 50px;
+
 }
 
 .item {
   color: white;
+  padding-top: 4%;
+  padding-bottom: 4%;
+
 }

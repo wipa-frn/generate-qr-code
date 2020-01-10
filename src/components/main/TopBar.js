@@ -50,7 +50,7 @@ const DivStyle = styled.div`
   justify-content: flex-end;
   align-items: center;
   padding-right: 10px;
-  
+
   
 `
 const ImageStyle = styled(Image)`

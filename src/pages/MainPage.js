@@ -11,12 +11,12 @@ export default class MainPage extends Component {
 
   render() {
     const items = [
-      <SidebarItem><ImageStyle src={require("../assets/angstrom-logo-full.png")}></ImageStyle></SidebarItem>,
-      <SidebarItem><Menu /></SidebarItem>,
+      <div> <ImageStyle src={require("../assets/angstrom-logo-height-50.png")}></ImageStyle></div >,
+      <Menu />
     ];
 
     return (
-      <Sidebar content={items}>
+      <Sidebar content={items} background={"#005580"} width={250}>
         <div className="main-page">
           <div className="right-main-page">
             <div className="top-bar-main-page">
@@ -34,12 +34,9 @@ export default class MainPage extends Component {
 }
 
 const ImageStyle = styled(Image)`
-  width:110px;
-  height:30px;
+  padding : 2%;
 `
 
 const DivLogoStyle = styled.div`
-  padding : 5%;
-  display: flex;
-  justify-content: center;
+  // padding : 2%;
 `
