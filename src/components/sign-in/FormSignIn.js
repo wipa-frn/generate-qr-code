@@ -4,6 +4,8 @@ import '../../App.css';
 import styled from 'styled-components'
 import { getEmployeeData } from '../../utils/data'
 import { Redirect } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 
 export default class FormSignIn extends Component {
   state = {
@@ -52,12 +54,12 @@ export default class FormSignIn extends Component {
         <TitleSignIn>Sign In</TitleSignIn>
         <Form ref="form" onSubmit={this.onSubmit.bind(this)}>
           <Form.Group controlId="formBasicUsername">
-            <Form.Label><i class="fas fa-user"></i> Username</Form.Label>
+            <Form.Label><FontAwesomeIcon icon={faUser}></FontAwesomeIcon> Username</Form.Label>
             <Form.Control ref="username" placeholder="Enter Username" required />
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
-            <Form.Label><i class="fas fa-lock"></i> Password</Form.Label>
+            <Form.Label><FontAwesomeIcon icon={faLock}></FontAwesomeIcon> Password</Form.Label>
             <Form.Control ref="password" type="password" placeholder="Password" required />
           </Form.Group>
           <DivStyle>
