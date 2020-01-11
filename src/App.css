@@ -60,17 +60,13 @@ body {
 }
 
 .logo {
-  width: 80%;
-  height: auto;
+  background-color: #c2c2c2;
 }
 
 /* Main page */
 .main-page {
-  /* display: grid; */
-  /* grid-template-columns: 1fr 5fr; */
-  /* font-family: 'Questrial', sans-serif;
-  font-size: 1em; */
-
+  height: 100%;
+  overflow: hidden;
 }
 
 .left-main-page {
@@ -80,9 +76,7 @@ body {
 }
 
 .right-main-page {
-  /* display: grid;
-  grid-template-rows: 0.7fr 7.5fr; */
-  /* overflow: hidden; */
+  height: 100%;
 }
 
 .top-bar-main-page {
@@ -97,16 +91,14 @@ body {
   background-color: white;
   width: 100%;
   overflow: hidden;
-  z-index: 1;
-
 }
 
 .content-main-page {
-  height: 100vh;
+  height: 100%;
   background-color: rgb(218, 218, 218);
-  padding: 5% 10% 5% 10%;
-  margin-top: 50px;
-
+  padding: 2rem 3rem;
+  margin-top: 60px;
+  overflow: auto;
 }
 
 .item {

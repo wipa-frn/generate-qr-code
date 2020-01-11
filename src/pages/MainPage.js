@@ -11,7 +11,7 @@ export default class MainPage extends Component {
 
   render() {
     const items = [
-      <div> <ImageStyle src={require("../assets/angstrom-logo-height-50.png")}></ImageStyle></div >,
+      <div className="logo"><ImageStyle src={require("../assets/angstrom-logo-height-50.png")}></ImageStyle></div >,
       <Menu />
     ];
 
@@ -28,7 +28,6 @@ export default class MainPage extends Component {
           </div>
         </div>
       </Sidebar>
-
     )
   }
 }
