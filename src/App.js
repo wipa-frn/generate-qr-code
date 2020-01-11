@@ -8,12 +8,11 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-import history from './utils/history'
 
 function App() {
   return (
 
-    <Router history={history} forceRefresh={true}>
+    <Router forceRefresh={true}>
       <div className="App">
         <Switch>
           <Route exact path="/" component={SignInPage} />
