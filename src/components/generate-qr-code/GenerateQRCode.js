@@ -89,7 +89,6 @@ export default class GenerateQRCode extends Component {
 
   getLocationUpdate = () => {
     //get location name
-    let options = { timeout: 120000 };
     if (navigator.geolocation) { //check if geolocation is available
       navigator.geolocation.getCurrentPosition(this.getLocation, this.errorHandler)
     }
