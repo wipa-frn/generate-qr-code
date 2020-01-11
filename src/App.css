@@ -30,36 +30,39 @@ body {
 
 .sign-in-page {
   height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
   background-image: linear-gradient(to right bottom, #2CB3C2, #2C539C);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sign-in-canvas {
-  border-radius: 30px;
+  max-width: 70%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
 }
 
 .left-sign-in-canvas {
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
+  /* border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px; */
   background-image: linear-gradient(to bottom right, rgb(196, 222, 243), rgb(99, 154, 190));
   color: black;
   padding: 1.5rem;
 }
 
 .right-sign-in-canvas {
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
+  /* border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px; */
   background-color: white;
   color: gray;
   padding: 1.5rem;
 }
 
 .logo {
+  width: 80%;
+}
+
+.sidebar-logo {
   background-color: #c2c2c2;
 }
 
