@@ -11,17 +11,13 @@ import {
 
 function App() {
   return (
-
     <Router forceRefresh={true}>
-      <div className="App">
-        <Switch>
-          <Route exact path="/" component={SignInPage} />
-          <Route path="/sign-in" component={SignInPage} />
-          <Route path="/generate-qr-code" component={GenerateQRCodePage} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path="/" component={SignInPage} />
+        <Route path="/sign-in" component={SignInPage} />
+        <Route path="/generate-qr-code" component={GenerateQRCodePage} />
+      </Switch>
     </Router>
-
   );
 }
 
