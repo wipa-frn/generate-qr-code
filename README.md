@@ -15,11 +15,15 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### User for Sign In
 
-Username : wipawadee
+Username : wipawadee<br />
 Password : 1234
 
-Username : chittaphon
+Username : chittaphon<br />
 Password : 1235
 
+### Project Detail
 
-
+- Users can log in by username and password.
+- Allow acess location and click button generate QR code.
+- Show QR Code information and QR code picture.
+- QR code expires in 2 minutes.
