@@ -43,16 +43,12 @@ body {
 }
 
 .left-sign-in-canvas {
-  /* border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px; */
   background-image: linear-gradient(to bottom right, rgb(196, 222, 243), rgb(99, 154, 190));
   color: black;
   padding: 1.5rem;
 }
 
 .right-sign-in-canvas {
-  /* border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px; */
   background-color: white;
   color: gray;
   padding: 1.5rem;
@@ -64,6 +60,7 @@ body {
 
 .sidebar-logo {
   background-color: #c2c2c2;
+  padding: 5px;
 }
 
 /* Main page */

@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { Image } from 'react-bootstrap'
-import styled from 'styled-components';
 import Menu from '../components/main/Menu'
 import TopBar from '../components/main/TopBar'
-
-import { Sidebar, SidebarItem } from 'react-responsive-sidebar';
+import { Sidebar } from 'react-responsive-sidebar';
 
 export default class MainPage extends Component {
 
   render() {
     const items = [
-      <div className="sidebar-logo"><ImageStyle src={require("../assets/angstrom-logo-height-50.png")}></ImageStyle></div >,
+      <div className="sidebar-logo"><Image src={require("../assets/angstrom-logo-height-50.png")}></Image ></div >,
       <Menu />
     ];
 
@@ -31,11 +29,3 @@ export default class MainPage extends Component {
     )
   }
 }
-
-const ImageStyle = styled(Image)`
-  padding : 2%;
-`
-
-const DivLogoStyle = styled.div`
-  // padding : 2%;
-`
