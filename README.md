@@ -24,6 +24,6 @@ Password : 1235
 ### Project Detail
 
 - Users can log in by username and password.
-- Allow acess location and click button generate QR code.
+- Allow access location and click button generate QR code.
 - Show QR Code information and QR code picture.
 - QR code expires in 2 minutes.
