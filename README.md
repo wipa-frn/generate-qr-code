@@ -1,4 +1,4 @@
-## Generate QR Code Project Web Application Coop-2019
+## Generate QR Code - Web Application
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and use library [qrcode.react](https://www.npmjs.com/package/qrcode.react) for generate QR code.
 
